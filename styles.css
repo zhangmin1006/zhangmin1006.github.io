@@ -5,20 +5,28 @@
   --text: #0f172a;
   --muted: #475569;
   --accent: #2563eb;
-  --border: #e2e8f0;
-  --shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+  --border: #dbeafe;
+  --shadow: 0 25px 60px rgba(15, 23, 42, 0.12);
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  font-family: Inter, system-ui, sans-serif;
-  background: var(--bg);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
   color: var(--text);
   line-height: 1.7;
+}
+
+img {
+  max-width: 100%;
 }
 
 a {
@@ -26,39 +34,48 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+a:hover,
+a:focus {
   text-decoration: underline;
 }
 
 .wrapper {
-  width: min(1100px, calc(100% - 2rem));
+  width: min(1120px, calc(100% - 2rem));
   margin: 0 auto;
 }
 
 .hero {
-  padding: 4rem 0 3rem;
+  padding: 3rem 0 2.5rem;
   background: linear-gradient(180deg, #eff6ff 0%, #f8fafc 100%);
   border-bottom: 1px solid var(--border);
 }
 
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
 .eyebrow {
   margin: 0 0 0.75rem;
-  font-size: 0.95rem;
-  letter-spacing: 0.16em;
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--accent);
 }
 
 .hero h1 {
   margin: 0;
-  font-size: clamp(2.6rem, 5vw, 4.5rem);
-  line-height: 1;
+  font-size: clamp(3rem, 5vw, 4.4rem);
+  line-height: 1.02;
 }
 
 .subtitle {
   max-width: 60ch;
-  margin: 1rem 0 1.5rem;
+  margin: 1rem 0 1.75rem;
   color: var(--muted);
+  font-size: 1.05rem;
 }
 
 .contact-list {
@@ -66,15 +83,76 @@ a:hover {
   flex-wrap: wrap;
   gap: 1rem;
   font-weight: 600;
+  color: var(--text);
+}
+
+.hero-aside {
+  display: grid;
+  gap: 1rem;
+}
+
+.profile-card {
+  padding: 1.5rem;
+  border-radius: 22px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.profile-card h2 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.15rem;
+}
+
+.profile-card p {
+  margin: 0 0 1rem;
+  color: var(--muted);
+}
+
+.profile-card dl {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.profile-card dt {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.profile-card dd {
+  margin: 0;
+  color: var(--text);
+}
+
+main {
+  padding: 2rem 0 4rem;
+}
+
+.section-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card-section,
+article {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 1.75rem;
+  box-shadow: var(--shadow);
 }
 
 section {
-  margin-top: 2.75rem;
+  margin-top: 2rem;
 }
 
 section h2 {
+  margin-top: 0;
   margin-bottom: 1rem;
-  font-size: 1.65rem;
+  font-size: 1.7rem;
 }
 
 ul,
@@ -83,22 +161,18 @@ ol {
   padding-left: 1.25rem;
 }
 
-.card-grid {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+li {
+  margin-bottom: 0.75rem;
 }
 
-article {
-  padding: 1.25rem;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  box-shadow: var(--shadow);
+.card-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 article h3 {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.65rem;
   font-size: 1.1rem;
 }
 
@@ -108,13 +182,44 @@ article h3 {
 }
 
 .footer {
-  padding: 2rem 0 3rem;
-  text-align: center;
+  padding: 2rem 0 2.5rem;
   color: var(--muted);
 }
 
-@media (max-width: 600px) {
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 950px) {
+  .hero-grid,
+  .section-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
   .hero {
-    padding-top: 3rem;
+    padding-top: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .wrapper {
+    width: min(100%, calc(100% - 1.5rem));
+  }
+
+  .contact-list {
+    flex-direction: column;
+  }
+
+  .profile-card {
+    padding: 1.25rem;
   }
 }
